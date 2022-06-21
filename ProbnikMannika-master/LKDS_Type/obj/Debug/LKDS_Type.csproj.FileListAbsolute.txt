@@ -20,3 +20,4 @@ C:\Users\nazar\Desktop\AAAA\ProbnikMannika-master\LKDS_Type\bin\Debug\LKDS_Type.
 C:\Users\nazar\Desktop\AAAA\ProbnikMannika-master\LKDS_Type\bin\Debug\LKDS_Type.pdb
 C:\Users\nazar\Desktop\AAAA\ProbnikMannika-master\LKDS_Type\obj\Debug\LKDS_Type.dll
 C:\Users\nazar\Desktop\AAAA\ProbnikMannika-master\LKDS_Type\obj\Debug\LKDS_Type.pdb
+C:\Users\nazar\Desktop\AAAA\ProbnikMannika-master\LKDS_Type\obj\Debug\LKDS_Type.csproj.AssemblyReference.cache

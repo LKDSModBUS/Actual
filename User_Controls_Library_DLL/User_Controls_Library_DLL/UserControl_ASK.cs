@@ -74,86 +74,86 @@ namespace DeviceManagerLKDS
 
         private void reset_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x00);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x00);
         }
 
         private void reset1_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x01);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x01);
         }
         private void reset2_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x02);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x02);
         }
 
         private void reset3_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x03);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x03);
         }
 
         private void reset4_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x04);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x04);
         }
 
         private void reset5_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x05);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x05);
         }
 
         private void reset6_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x06);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x06);
         }
 
         private void reset7_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x07);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x07);
         }
 
         private void reset8_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x08);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x08);
         }
 
         private void reset9_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x09);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x09);
         }
 
         private void reset10_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x10);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x10);
         }
 
         private void reset11_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x11);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x11);
         }
 
         private void reset12_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x12);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x12);
         }
 
         private void reset13_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x13);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x13);
         }
 
         private void reset14_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x14);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x14);
         }
 
         private void reset15_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x15);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x15);
         }
 
         private void reset16_btn_Click(object sender, EventArgs e)
         {
-            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterReset, 0x16);
+            OnCmd?.Invoke(EnumHelper.CmdTypes.AdapterTriggerOff, device_address_tb.Text, 0x16);
         }
     }
 }

@@ -28,11 +28,12 @@ namespace DeviceManagerLKDS.Classes
         public delegate void OnRsvDataDelegate(byte[] data);
         public AutoResetEvent OnDataEvent = new AutoResetEvent(false);
         public OnRsvDataDelegate OnRsvData = null;
+        public static DataReader dr;
 
-        object locker = new object();
+
 
         public SerialPort port = null;
-        public DataReader(string portName)//, byte[] data)
+        public DataReader(string portName)
         {
             try
             {
@@ -94,7 +95,7 @@ namespace DeviceManagerLKDS.Classes
             data[data.Length - 2] = CRC[CRC.Length - 2];
             data[data.Length - 1] = CRC[CRC.Length - 1];
             port.Write(data, 0, data.Length);
-                                OnDataEvent.Reset();
+            OnDataEvent.Reset();
 
             inputBytes = ByteToString(data).ToUpper();
             Console.WriteLine("Input: " + inputBytes);
@@ -114,41 +115,38 @@ namespace DeviceManagerLKDS.Classes
         
         public void PackageSeeker(object s, EventArgs e)
         {
-            lock (locker)
+            int len = port.BytesToRead;
+            byte[] bytes = new byte[len];
+
+            if (port.IsOpen)
             {
-                int len = port.BytesToRead;
-                byte[] bytes = new byte[len];
-
-                if (port.IsOpen)
+                port.Read(bytes, 0, len);
+                rawData.AddRange(bytes);
+                outputBytes += ByteToString(bytes).ToUpper();
+            }
+            try
+            {
+                if ((rawData.Count > 2) && (rawData[2] + 2 <= rawData.Count - 3))
                 {
-                    port.Read(bytes, 0, len);
-                    rawData.AddRange(bytes);
-                    outputBytes += ByteToString(bytes).ToUpper();
-                }
-                try
-                {
-                    if ((rawData.Count > 2) && (rawData[2] + 2 <= rawData.Count - 3))
+                    for (int i = 0; i < rawData.Count; i++)
                     {
-                        for (int i = 0; i < rawData.Count; i++)
+                        if (rawData[i] == 0x01 && rawData[i + 1] == 0x04)//0x01 и 0x04 костыли
                         {
-                            if (rawData[i] == 0x01 && rawData[i + 1] == 0x04)//0x01 и 0x04 костыли
-                            {
-                                setOfBytes = new byte[rawData[2] + 2];
+                            setOfBytes = new byte[rawData[2] + 2];
 
-                                rawData.CopyTo(3, setOfBytes, 0, rawData[2] + 2);
-                                OnRsvData?.Invoke(setOfBytes);
-                                OnDataEvent.Set();
-                                Console.WriteLine("Output: " + outputBytes);
-                            }
+                            rawData.CopyTo(3, setOfBytes, 0, rawData[2] + 2);
+                            OnRsvData?.Invoke(setOfBytes);
+                            OnDataEvent.Set();
+                            Console.WriteLine("Output: " + outputBytes);
                         }
-                        rawData.Clear();
-                        log_input = "\n\n[" + DateTime.Now + "-" + DateTime.Now.Millisecond + "] >: " + inputBytes;
-                        log_output = "\n[" + DateTime.Now + "-" + DateTime.Now.Millisecond + "] <: " + outputBytes;
                     }
+                    rawData.Clear();
+                    log_input = "\n\n[" + DateTime.Now + "-" + DateTime.Now.Millisecond + "] >: " + inputBytes;
+                    log_output = "\n[" + DateTime.Now + "-" + DateTime.Now.Millisecond + "] <: " + outputBytes;
                 }
-                catch 
-                { 
-                }
+            }
+            catch
+            {
             }
         }
         public void Disconnect()

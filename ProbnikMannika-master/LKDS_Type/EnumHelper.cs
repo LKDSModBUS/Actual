@@ -85,9 +85,15 @@ namespace LKDS_Type
         }
         public enum CmdTypes
         {
-            AdapterOn = 0x05,
-            AdapterOff = 0x04,
             AdapterReset = 0x01,
+            AdapterTriggerOff = 0x02,
+            AdapterTriggerOn = 0x03,
+            AdapterOff = 0x04,
+            AdapterOn = 0x05,
+            AdapterImpulsOn = 0x06,
+            AdapterImpulsOff = 0x07,
+
+
             LiftOrder = 0x01,
             LiftCallUpSideA = 0x02,
             LiftCallDownSideA = 0x03,

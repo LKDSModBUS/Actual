@@ -494,6 +494,7 @@
             // 
             // door_drive_work_time
             // 
+            this.door_drive_work_time.BackColor = System.Drawing.SystemColors.ControlDark;
             this.door_drive_work_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.door_drive_work_time.Location = new System.Drawing.Point(278, 174);
             this.door_drive_work_time.Name = "door_drive_work_time";
@@ -503,6 +504,7 @@
             // 
             // door_drive_inclusions
             // 
+            this.door_drive_inclusions.BackColor = System.Drawing.SystemColors.ControlDark;
             this.door_drive_inclusions.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.door_drive_inclusions.Location = new System.Drawing.Point(278, 88);
             this.door_drive_inclusions.Name = "door_drive_inclusions";
@@ -512,6 +514,7 @@
             // 
             // main_drive_work_time
             // 
+            this.main_drive_work_time.BackColor = System.Drawing.SystemColors.ControlDark;
             this.main_drive_work_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.main_drive_work_time.Location = new System.Drawing.Point(278, 130);
             this.main_drive_work_time.Name = "main_drive_work_time";
@@ -521,6 +524,7 @@
             // 
             // main_drive_inclusions
             // 
+            this.main_drive_inclusions.BackColor = System.Drawing.SystemColors.ControlDark;
             this.main_drive_inclusions.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.main_drive_inclusions.Location = new System.Drawing.Point(278, 43);
             this.main_drive_inclusions.Name = "main_drive_inclusions";
@@ -584,6 +588,8 @@
             // 
             // lift_status
             // 
+            this.lift_status.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.lift_status.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.lift_status.FormattingEnabled = true;
             this.lift_status.Location = new System.Drawing.Point(10, 94);
             this.lift_status.Name = "lift_status";
@@ -592,6 +598,7 @@
             // 
             // door_status
             // 
+            this.door_status.BackColor = System.Drawing.SystemColors.ControlDark;
             this.door_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.door_status.Location = new System.Drawing.Point(9, 217);
             this.door_status.Multiline = true;
@@ -622,6 +629,7 @@
             // 
             // working_mode
             // 
+            this.working_mode.BackColor = System.Drawing.SystemColors.ControlDark;
             this.working_mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.working_mode.Location = new System.Drawing.Point(9, 37);
             this.working_mode.Multiline = true;
@@ -642,6 +650,7 @@
             // 
             // floor
             // 
+            this.floor.BackColor = System.Drawing.SystemColors.ControlDark;
             this.floor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.floor.ForeColor = System.Drawing.Color.Black;
             this.floor.Location = new System.Drawing.Point(71, 28);
@@ -682,6 +691,7 @@
             // 
             // lb_type
             // 
+            this.lb_type.BackColor = System.Drawing.SystemColors.ControlDark;
             this.lb_type.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lb_type.Location = new System.Drawing.Point(21, 632);
             this.lb_type.Multiline = true;
@@ -702,6 +712,7 @@
             // 
             // call_source
             // 
+            this.call_source.BackColor = System.Drawing.SystemColors.ControlDark;
             this.call_source.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.call_source.Location = new System.Drawing.Point(21, 692);
             this.call_source.Multiline = true;
@@ -732,6 +743,7 @@
             // 
             // restart
             // 
+            this.restart.BackColor = System.Drawing.SystemColors.ControlDark;
             this.restart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.restart.Location = new System.Drawing.Point(95, 570);
             this.restart.Name = "restart";
@@ -796,6 +808,7 @@
             // 
             // CallsOrders
             // 
+            this.CallsOrders.BackColor = System.Drawing.SystemColors.ControlDark;
             this.CallsOrders.FormattingEnabled = true;
             this.CallsOrders.Location = new System.Drawing.Point(788, 381);
             this.CallsOrders.Name = "CallsOrders";
@@ -848,7 +861,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.Controls.Add(this.CallsOrders);
             this.Controls.Add(this.no_move);
             this.Controls.Add(this.passangers);

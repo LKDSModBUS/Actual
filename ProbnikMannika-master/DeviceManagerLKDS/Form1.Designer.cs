@@ -90,7 +90,7 @@ namespace DeviceManagerLKDS
             this.cbConnectedPorts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbConnectedPorts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
             this.cbConnectedPorts.FormattingEnabled = true;
-            this.cbConnectedPorts.Location = new System.Drawing.Point(313, 20);
+            this.cbConnectedPorts.Location = new System.Drawing.Point(311, 20);
             this.cbConnectedPorts.Margin = new System.Windows.Forms.Padding(30, 20, 3, 3);
             this.cbConnectedPorts.Name = "cbConnectedPorts";
             this.cbConnectedPorts.Size = new System.Drawing.Size(279, 21);
@@ -102,10 +102,10 @@ namespace DeviceManagerLKDS
             this.deviceNameLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.deviceNameLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.deviceNameLb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
-            this.deviceNameLb.Location = new System.Drawing.Point(104, 0);
+            this.deviceNameLb.Location = new System.Drawing.Point(103, 0);
             this.deviceNameLb.Name = "deviceNameLb";
             this.deviceNameLb.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.deviceNameLb.Size = new System.Drawing.Size(176, 72);
+            this.deviceNameLb.Size = new System.Drawing.Size(175, 72);
             this.deviceNameLb.TabIndex = 3;
             this.deviceNameLb.Text = "ModBUS | Диспетчер устройств";
             // 
@@ -145,7 +145,7 @@ namespace DeviceManagerLKDS
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.29448F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 373F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 367F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 369F));
             this.tableLayoutPanel2.Controls.Add(this.clearbutton, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnConnect, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.cbConnectedPorts, 2, 0);
@@ -161,7 +161,7 @@ namespace DeviceManagerLKDS
             // 
             // clearbutton
             // 
-            this.clearbutton.Location = new System.Drawing.Point(794, 20);
+            this.clearbutton.Location = new System.Drawing.Point(792, 20);
             this.clearbutton.Margin = new System.Windows.Forms.Padding(30, 20, 3, 3);
             this.clearbutton.Name = "clearbutton";
             this.clearbutton.Size = new System.Drawing.Size(75, 23);
@@ -176,7 +176,7 @@ namespace DeviceManagerLKDS
             this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnConnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
-            this.btnConnect.Location = new System.Drawing.Point(659, 10);
+            this.btnConnect.Location = new System.Drawing.Point(657, 10);
             this.btnConnect.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(102, 47);
@@ -302,6 +302,7 @@ namespace DeviceManagerLKDS
             // 
             // timer1
             // 
+            this.timer1.Interval = 250;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1

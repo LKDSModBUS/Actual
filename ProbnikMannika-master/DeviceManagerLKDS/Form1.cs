@@ -22,14 +22,21 @@ namespace DeviceManagerLKDS
 {
     public partial class Form1 : Form
     {
-        public string feck;
         public Stream st = null;
-        DataReader dr;
-
+        TimeSpan time_span = new TimeSpan(0, 24, 0, 0);
+        public static int log_number = 1;
+        public static string log_path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
         #region Искусственные переменные
 
         // StreamWriter logWriter = new StreamWriter("C:\\DeviceManagerLKDS\\DeviceManagerLKDS\\DeviceManagerLKDS\\Logs\\Log.txt"); // ПУТЬ
         int[] connectedDevices = new int[64];
+
+
+        public static string filename = $"\\Log{log_number}_{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}_{DateTime.Now.Hour}-{DateTime.Now.Minute}.txt";
+
+        public static FileStream fs = File.Create(log_path + filename);
+
+        StreamWriter sw = new StreamWriter(fs);
 
         Parent[] cnctDev = new Parent[256];
 
@@ -86,7 +93,7 @@ namespace DeviceManagerLKDS
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            dr?.Disconnect();
+            DataReader.dr?.Disconnect();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -107,21 +114,20 @@ namespace DeviceManagerLKDS
         bool iscnt = false;
         private void bConnectPort_Click(object sender, EventArgs e)
         {
-            feck = cbConnectedPorts.SelectedItem.ToString();
             if (cbConnectedPorts.Items.Count != 0)
             {
                 if (iscnt)
                 {
                     try
                     {
-                        dr.Disconnect();
+                        DataReader.dr.Disconnect();
                         rtbLog.Text += $"\nСоединение с портом {cbConnectedPorts.SelectedItem} разорвано";
                         timer1.Stop();
                         btnConnect.Text = "Открыть соединение";
                         while (mainTabControl.TabPages.Count > 1)
                             mainTabControl.TabPages.RemoveAt(1);
                         clone = new byte[34];
-                        dr = null;
+                        DataReader.dr = null;
                     }
                     catch
                     {
@@ -136,7 +142,19 @@ namespace DeviceManagerLKDS
                         {
                             if (i == cbConnectedPorts.SelectedIndex)
                             {
-                                dr = new DataReader(cbConnectedPorts.SelectedItem.ToString());
+
+                                //
+
+                                if (Directory.Exists(log_path))
+                                {
+
+                                        sw.AutoFlush = true;
+                                        sw.WriteLine($"Log Begin {DateTime.Now}");
+                                }
+
+                                    sw.WriteLine("Addicted!!!!!!!!");
+
+                                DataReader.dr = new DataReader(cbConnectedPorts.SelectedItem.ToString());
                                 btnConnect.Text = "Закрыть соединение";
                                 timer1.Start();
                                 mainTabControl.SelectedIndex = 0;
@@ -154,11 +172,6 @@ namespace DeviceManagerLKDS
             }
 
         }
-
-/*        public  void OnRsvDataOnForm(byte[] data)
-            {
-
-            }*/
 
         private void clearbutton_Click(object sender, EventArgs e)
         {
@@ -188,7 +201,7 @@ namespace DeviceManagerLKDS
 
             SendQuery(array);
 
-            ((Parent)(mainTabControl.SelectedTab.Controls[0])).SetData(dr.setOfBytes, Convert.ToUInt16(mainTabControl.SelectedTab.Name));
+            ((Parent)(mainTabControl.SelectedTab.Controls[0])).SetData(DataReader.dr.setOfBytes, Convert.ToUInt16(mainTabControl.SelectedTab.Name));
         }
 
         void AskDevState()
@@ -201,34 +214,34 @@ namespace DeviceManagerLKDS
             byte[] array = new byte[]
             {
                  0x01,
-                                        0x04,
-                                        var1.Byte1, // НУЖНО 0x00
-                                        var1.Byte0,
-                                        0x00,
-                                        0x10,
-                                        0,
-                                        0
+                 0x04,
+                 var1.Byte1, // НУЖНО 0x00
+                 var1.Byte0,
+                 0x00,
+                 0x10,
+                 0,
+                 0
 
             };
 
             SendQuery(array);
 
-            ((Parent)(mainTabControl.SelectedTab.Controls[0])).SetData(dr.setOfBytes, Convert.ToUInt16(mainTabControl.SelectedTab.Name));
+            ((Parent)(mainTabControl.SelectedTab.Controls[0])).SetData(DataReader.dr.setOfBytes, Convert.ToUInt16(mainTabControl.SelectedTab.Name));
         }
 
         bool SendQuery(byte[] query)
         {
-            dr.Send(query);
+            DataReader.dr.Send(query);
 
-            bool isdata = dr.OnDataEvent.WaitOne(1000);
+            bool isdata = DataReader.dr.OnDataEvent.WaitOne(1000);
 
-            Console.WriteLine($"Get {isdata}; Len {dr.setOfBytes.Length}");
+            Console.WriteLine($"Get {isdata}; Len {DataReader.dr.setOfBytes.Length}");
             rtbLog.Text += DataReader.log_input + DataReader.log_output;
-            dr.outputBytes = "";
+            DataReader.dr.outputBytes = "";
             rtbLog.SelectionStart = rtbLog.Text.Length;
             rtbLog.ScrollToCaret();
 
-            return isdata && dr.setOfBytes.Length != 0;
+            return isdata && DataReader.dr.setOfBytes.Length != 0;
 
         }
 
@@ -248,13 +261,13 @@ namespace DeviceManagerLKDS
             try
             {
                 // CRC bit
-                if (clone[clone.Length - 1] != dr.setOfBytes[dr.setOfBytes.Length - 1] || clone[clone.Length - 2] != dr.setOfBytes[dr.setOfBytes.Length - 2])
+                if (clone[clone.Length - 1] != DataReader.dr.setOfBytes[DataReader.dr.setOfBytes.Length - 1] || clone[clone.Length - 2] != DataReader.dr.setOfBytes[DataReader.dr.setOfBytes.Length - 2])
                 {
-                    Array.Copy(dr.setOfBytes, clone, dr.setOfBytes.Length);
+                    Array.Copy(DataReader.dr.setOfBytes, clone, DataReader.dr.setOfBytes.Length);
                     List<byte> bits = new List<byte>();
                     for (int i = 0; i <= 255; i++)
                     {
-                        int b = dr.setOfBytes[(int)(i / 8)];
+                        int b = DataReader.dr.setOfBytes[(int)(i / 8)];
                         if (((b & (1 << (i % 8))) != 0))
                             bits.Add((byte)i);
                     }
@@ -281,15 +294,14 @@ namespace DeviceManagerLKDS
 
                         while (!SendQuery(array));
 
-                        if (dr.setOfBytes[0] != 0xFF)
+                        if (DataReader.dr.setOfBytes[0] != 0xFF)
                         {
                             Parent CD = cnctDev[bits[j]];
-                            LKDS_Type.Parent.PortName = cbConnectedPorts.SelectedItem.ToString();
                             if (CD == null)
                             {
 
                                 // create tabs
-                                CAN_Devices CAND = (CAN_Devices)(dr.setOfBytes[1]);
+                                CAN_Devices CAND = (CAN_Devices)(DataReader.dr.setOfBytes[1]);
 
                                 switch (CAND)
                                 {
@@ -452,7 +464,7 @@ namespace DeviceManagerLKDS
 
         public void button4_Click(object sender, EventArgs e)
         {
-            //Process.Start("C:\\Users\\nazar\\Desktop\\DeviceManagerLKDS - df211a1bece6d3d77418f95e2cf132bcd44257fa\\DeviceManagerLKDS\\Logs");
+            Process.Start(log_path);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)

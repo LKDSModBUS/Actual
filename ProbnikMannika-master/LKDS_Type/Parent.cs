@@ -13,23 +13,21 @@ namespace LKDS_Type
 {
     public class Parent : UserControl
     {
-        public bool IfItIsLift;
-        public static string PortName;
-        DataReader dr = new DataReader(PortName);
+        public static bool IfItIsLift;
         public virtual void SetData(byte[] array, ushort address)
         {
             
         }
 
-        public delegate void OnCmdDelegate(CmdTypes current_enum, short num);
+        public delegate void OnCmdDelegate(CmdTypes current_enum, string adress, short num);
         public byte adress;
         virtual public CAN_Devices type => CAN_Devices.LB;
 
 
-        public OnCmdDelegate OnCmd = null;//SendCmd(CmdTypes.AdapterOff, 0);
+        public OnCmdDelegate OnCmd = SendCmd;
 
 
-        public void SendCmd(EnumHelper.CmdTypes current_enum, short num)
+        public static void SendCmd(EnumHelper.CmdTypes current_enum, string adress, short num)
         {
             if (IfItIsLift)
             {
@@ -44,21 +42,26 @@ namespace LKDS_Type
                                         0,
                                         0
                                         };
-                dr.Send(QueryLiftWrite);
+                DataReader.dr.Send(QueryLiftWrite);
             } else
             {
+
+                Union16 var1 = new Union16();
+
+                var1.Value = (short)(0x100F + 0x0010 * Math.Abs((Convert.ToInt32(adress))));
+
                 byte[] QueryAdapterWrite = new byte[]
                 {
                                         0x01, // Адрес устройства
                                         0x06, // Адерс команды
-                                        0x12, // адрес устройства + 0F
-                                        0x2F, // адрес устройства + 0F
+                                        var1.Byte1, // адрес устройства + 0F
+                                        var1.Byte0, // адрес устройства + 0F
                                         (byte)current_enum, // Команда из Enum CMD
                                         (byte)num, // Статично
                                         0,
                                         0
                 };
-                dr.Send(QueryAdapterWrite);
+                DataReader.dr.Send(QueryAdapterWrite);
             }
         }
     }
